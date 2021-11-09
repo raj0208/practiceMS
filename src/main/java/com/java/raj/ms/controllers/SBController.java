@@ -22,10 +22,8 @@ public class SBController {
         return model;
     }
 
-
-
     @GetMapping("/dynamic")
-    public MappingJacksonValue dynamicModel(@RequestParam(name="filter") Optional<String> filter, @RequestParam(value = "test", defaultValue = "" ) String queryParam) {
+    public MappingJacksonValue dynamicModel(@RequestParam(name="fields") Optional<String> filter, @RequestParam(value = "test", defaultValue = "" ) String queryParam) {
         String[] properties = filter.orElseGet(() -> "").split(",");
         if (properties.length == 1 && properties[0] == "") {
             properties = new String[] { "firstName", "lastName", "salary", "department" };
